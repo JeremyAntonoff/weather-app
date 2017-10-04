@@ -1,0 +1,76 @@
+body {
+margin: 0;
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+	margin-bottom: 0px;
+}
+
+p {
+	text-align: center;
+	padding-bottom: 20px;
+	font-size: 1.4em;
+	margin: 0 auto;
+	font-weight: 400;
+}
+
+button {
+	height: 40px;
+	width: 100px;
+	background: #00DDAA;
+	border: 1px solid black;
+}
+
+a {
+	text-decoration: none;
+	color: #164070;
+}
+
+a:hover, a:visited, a:active {
+	color: #164070;
+	text-decoration: underline;
+}
+
+.container {
+	margin: 75px auto 7px auto;
+	background: #1144CC;
+	max-width: 600px;
+	height: auto;
+	opacity: 1;
+	border: 2px solid black;
+}
+
+.weather {
+	display: block;
+	margin: 0;
+}
+
+.cloudy {
+	background: url("../img/clouds.jpg");
+}
+
+.clear {
+	background: url("../img/clear.jpg");
+}
+
+.rain {
+	background: url("../img/rain.jpg");
+}
+
+.snow {
+	background: url("../img/snow.jpg");
+}
+
+#condition {
+	background: #1144CC;
+	color: white;
+}
+
+#temp {
+	background: #1144CC;
+	font-size: 30px;
+	color: white;
+}
