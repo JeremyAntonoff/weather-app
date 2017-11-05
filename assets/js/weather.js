@@ -1,68 +1,61 @@
 $(document).ready(function() {
-	var location = $("#location");
-	var condition = $("#condition");
-	var temp = $("#temp");
+  const location = $('#location');
+  const condition = $('#condition');
+  const temp = $('#temp');
 
+  //get location
+  getCord();
+  function weather(lat, longi) {
+    $.ajax({
+      url: `https://api.wunderground.com/api/576aa22e2f9685db/conditions/q/${lat},${longi}.json`,
+      dataType: 'jsonp'
+    }).then(({ current_observation }) => {
+      const icon = `'${current_observation.icon_url}'`;
+      location.append(
+        `${current_observation.display_location
+          .city},&nbsp;${current_observation.display_location.state_name}`
+      );
+      condition.append(`<img src = ${icon}>${current_observation.weather}`);
+      temp.append(`${current_observation.temp_f}&nbsp;F`);
+      backGround(current_observation);
+      switchTemp(current_observation);
+    });
+  }
 
-	//get location
-	getCord();
+  function backGround(current) {
+    if (current.weather.indexOf('Cloud') > 0) {
+      $('body').addClass('cloudy');
+    } else if (current.weather.indexOf('Clear') >= 0) {
+      $('body').addClass('clear');
+    } else if (current.weather.indexOf('Rain') > 0) {
+      $('body').addClass('rain');
+    } else if (current.weather.indexOf('Snow') > 0) {
+      $('body').addClass('snow');
+    } else if (current.weather.indexOf('Over') >= 0) {
+      $('body').addClass('cloudy');
+    }
+  }
 
-	function weather(lat, longi) {
-		$.ajax({
-			url: "https://api.wunderground.com/api/576aa22e2f9685db/conditions/q/" + lat + "," + longi + ".json",
-			dataType: "jsonp",
-			success: function(weather) {
-				location.append(weather.current_observation.display_location.city + ", " + weather.current_observation.display_location.state_name);
-				var icon = "'" + weather.current_observation.icon_url + "'"
-				condition.append('<img src =' + icon + '>' + weather.current_observation.weather);
-				temp.append(weather.current_observation.temp_f + "F");
-				//set background
-				backGround(weather);
-				//far/cel button function
-				click(weather);
-			}
-		})
-	}
+  function getCord(lat, longi) {
+    let cordArray;
+    navigator.geolocation.getCurrentPosition(location => {
+      lat = location.coords.latitude;
+      longi = location.coords.longitude;
+      return weather(lat, longi);
+    });
+  }
 
-	function backGround(weather) {
-		if (weather.current_observation.weather.indexOf("Cloud") > 0) {
-			$("body").addClass("cloudy");
-		} else if (weather.current_observation.weather.indexOf("Clear") >= 0) {
-			$("body").addClass("clear");
-		} else if (weather.current_observation.weather.indexOf("Rain") > 0) {
-			$("body").addClass("rain");
-		} else if (weather.current_observation.weather.indexOf("Snow") > 0) {
-			$("body").addClass("snow");
-		} else if (weather.current_observation.weather.indexOf("Over") >= 0) {
-			$("body").addClass("cloudy");
-		}
-	}
-
-	function getCord(lat,longi) {
-		var cordArray;
-		navigator.geolocation.getCurrentPosition(function(location) {
-  		lat = location.coords.latitude
-  		longi = location.coords.longitude;
-			return weather(lat,longi)
-		});
-	}
-
-
-function click(weather) {
-	var convert = $("#convert")
-	var ifFar = true
-	convert.on("click", function() {
-		if (ifFar) {
-			temp.text("Temperature: " + weather.current_observation.temp_c + "C");
-			ifFar = false;
-		} else {
-			temp.text("Temperature: " + weather.current_observation.temp_f + "F")
-			ifFar = true;
-		}
-	})
-}
-
+  function switchTemp(current) {
+    const convert = $('#convert');
+    let ifFar = true;
+    convert.on('click', () => {
+      if (ifFar) {
+        temp.text(`Temperature: ${current.temp_c} C`);
+        ifFar = false;
+      } else {
+        temp.text(`Temperature: ${current.temp_f} F`);
+        ifFar = true;
+      }
+    });
+  }
 });
-
-
-
