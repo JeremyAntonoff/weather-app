@@ -9,17 +9,27 @@ $(document).ready(function() {
     $.ajax({
       url: `https://api.wunderground.com/api/576aa22e2f9685db/conditions/q/${lat},${longi}.json`,
       dataType: 'jsonp'
-    }).then(({ current_observation }) => {
-      const icon = `'${current_observation.icon_url}'`;
-      location.append(
-        `${current_observation.display_location
-          .city},&nbsp;${current_observation.display_location.state_name}`
-      );
-      condition.append(`<img src = ${icon}>${current_observation.weather}`);
-      temp.append(`${current_observation.temp_f}&nbsp;F`);
-      backGround(current_observation);
-      switchTemp(current_observation);
-    });
+    })
+      .then(appendWeather)
+      .catch(appendError);
+  }
+
+  function appendWeather({ current_observation }) {
+    const icon = `'${current_observation.icon_url}'`;
+    location.append(
+      `${current_observation.display_location.city},&nbsp;${current_observation
+        .display_location.state_name}`
+    );
+    condition.append(`<img src = ${icon}>${current_observation.weather}`);
+    temp.append(`${current_observation.temp_f}&nbsp;F`);
+    backGround(current_observation);
+    switchTemp(current_observation);
+  }
+
+  function appendError() {
+    temp
+      .html(`Something went wrong! Please try again later.`)
+      .css('color', '#7d0900');
   }
 
   function backGround(current) {
