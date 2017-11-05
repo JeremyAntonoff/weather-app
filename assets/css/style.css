@@ -1,76 +1,91 @@
 body {
-margin: 0;
+  margin: 0px;
+  padding: 0px;
 }
 
 h1 {
-	color: white;
-	text-align: center;
-	padding-top: 10px;
-	margin-bottom: 0px;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 0px;
 }
 
 p {
-	text-align: center;
-	padding-bottom: 20px;
-	font-size: 1.4em;
-	margin: 0 auto;
-	font-weight: 400;
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 1.4em;
+  margin: 0 auto;
+  font-weight: 400;
 }
 
 button {
-	height: 40px;
-	width: 100px;
-	background: #00DDAA;
-	border: 1px solid black;
+  height: 40px;
+  width: 100px;
+  background: #cf9812;
+  font-size: 14px;
+  border: 1px solid black;
+}
+
+button:hover {
+  background: #ffcb4c;
+  cursor: pointer;
+}
+button:active {
+  background: #ffebb9;
+  cursor: pointer;
 }
 
 a {
-	text-decoration: none;
-	color: #164070;
+  text-decoration: none;
+  color: white;
 }
 
-a:hover, a:visited, a:active {
-	color: #164070;
-	text-decoration: underline;
+a:hover,
+a:active {
+  color: #164070;
+  text-decoration: underline;
 }
 
 .container {
-	margin: 75px auto 7px auto;
-	background: #1144CC;
-	max-width: 600px;
-	height: auto;
-	opacity: 1;
-	border: 2px solid black;
+  margin: 75px auto 7px auto;
+  background: #2955c6;
+  max-width: 600px;
+  width: 90%;
+  height: auto;
+  opacity: 1;
+  border: 2px solid black;
+  border-radius: 25px;
+  border-bottom-left-radius: 0px;
 }
 
 .weather {
-	display: block;
-	margin: 0;
+  display: block;
+  margin: 0;
 }
 
 .cloudy {
-	background: url("../img/clouds.jpg");
+  background: url('../img/clouds.jpg');
 }
 
 .clear {
-	background: url("../img/clear.jpg");
+  background: url('../img/clear.jpg');
 }
 
 .rain {
-	background: url("../img/rain.jpg");
+  background: url('../img/rain.jpg');
 }
 
 .snow {
-	background: url("../img/snow.jpg");
+  background: url('../img/snow.jpg');
 }
 
 #condition {
-	background: #1144CC;
-	color: white;
+  background: #2955c6;
+  color: white;
 }
 
 #temp {
-	background: #1144CC;
-	font-size: 30px;
-	color: white;
+  background: #2955c6;
+  font-size: 30px;
+  color: white;
 }
