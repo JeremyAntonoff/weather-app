@@ -2,7 +2,7 @@
 
 ![alt text](https://jeremyantonoff.com/img/work/weather.JPG "Weather APP")
 
-A minimalist weather app that utilises the Weather Underground API to display weather information and changing backgrounds based on forecast.
+A minimalist weather app that utilises the Weather Underground API to display weather information and changes the background based on the current forecast!
 Features a Celsius to Fahrenheit converter.
 
 >**User Story:** I can see the weather in my current location.<br>
